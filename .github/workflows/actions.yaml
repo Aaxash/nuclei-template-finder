@@ -2,7 +2,7 @@ name: Update Public Files Weekly
 
 on:
   schedule:
-    - cron: '0 1 * * 1'  
+    - cron: '0 19 * * 1'  
   # Optional: you can also include other triggers like `push` if needed
 
 jobs:
