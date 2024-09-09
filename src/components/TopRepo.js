@@ -14,7 +14,9 @@ function TopRepo() {
         { "name": "SirBugs/Priv8-Nuclei-Templates", "url": "https://github.com/SirBugs/Priv8-Nuclei-Templates" },
         { "name": "linuxadi/40k-nuclei-templates", "url": "https://github.com/linuxadi/40k-nuclei-templates" },
         { "name": "geeknik/the-nuclei-templates", "url": "https://github.com/geeknik/the-nuclei-templates" },
-        { "name": "pdelteil/BugBountyReportTemplates", "url": "https://github.com/pdelteil/BugBountyReportTemplates" }
+        { "name": "pdelteil/BugBountyReportTemplates", "url": "https://github.com/pdelteil/BugBountyReportTemplates" },
+        { "name": "UnaPibaGeek/honeypots-detection", "url": "https://github.com/UnaPibaGeek/honeypots-detection" },
+        { "name": "cipher387/juicyinfo-nuclei-templates", "url": "https://github.com/cipher387/juicyinfo-nuclei-templates" }    
     ];
 
     const [repos] = useState(localRepos); // Use the local array as the initial state

@@ -2,31 +2,36 @@
     --github-blue: #0366d6;
     --footer-red: #bb2c2c;
     --hover-blue: #1565c0;
+    --card-border: #ddd;
+    --font-size-heading: 2rem; /* Adjusted for better scalability */
+    --font-size-repo-name: 1rem;
+    --padding-card: 1rem;
+    --max-width-container: 1000px;
 }
 
 /* General styling for the repo section */
 .repo-section {
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
-    padding: 20px 0; /* Optional: Adding padding for spacing */
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
 }
 
 /* Heading styling */
 .repo-section h1 {
-    font-size: 28px; /* Adjusted for mobile */
+    font-size: var(--font-size-heading); /* Scalable font size */
     cursor: pointer;
-    margin-bottom: 20px; /* Space between heading and container */
+    margin-bottom: 2rem; /* Space between heading and container */
 }
 
 /* Grid layout for the repositories */
 .repo-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid with min-width */
-    gap: 20px;
-    padding: 10px;
+    gap: 1.5rem; /* Adjusted gap for better spacing */
+    padding: 1rem;
     box-sizing: border-box;
-    max-width: 1200px; /* Limit the max-width for better centering */
+    max-width: var(--max-width-container); /* Limit the max-width for better centering */
     width: 100%;
     justify-content: center; /* Center the grid items horizontally */
     align-items: center; /* Center grid items vertically if needed */
@@ -34,9 +39,9 @@
 
 /* Individual repository card styling */
 .repo-card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border);
     border-radius: 8px;
-    padding: 10px;
+    padding: var(--padding-card);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -45,18 +50,19 @@
     max-width: 200px;
     width: 100%;
     box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
 /* GitHub logo styling */
 .github-logo {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 8px;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Repository name styling */
 .repo-name {
-    font-size: 16px;
+    font-size: var(--font-size-repo-name);
     color: var(--github-blue);
     margin: 0;
     font-weight: 600;
@@ -80,7 +86,6 @@
 
 /* Footer styling */
 .footer {
-    padding: 10px 0;
     cursor: pointer;
 }
 
@@ -92,7 +97,7 @@
 .footer-heart a {
     border-bottom: 1px solid var(--footer-red);
     color: var(--footer-red);
-    padding-bottom: .25em;
+    padding-bottom: 0.25em;
     text-decoration: none;
 }
 
@@ -103,26 +108,25 @@
     background-repeat: repeat-x;
     background-size: 20%;
     border-bottom: 0;
-    padding-bottom: .3em;
+    padding-bottom: 0.3em;
 }
 
 /* Styling for emoji inside the footer */
 .emoji {
     vertical-align: middle;
-    padding: 5px;
+    padding: 0.5rem;
 }
 
 /* Styling for the link to full repository list */
 .more-repos {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px; /* Space between container and "View All" link */
+    margin: 1rem 0;
 }
 
 .more-repos-link {
     color: var(--github-blue);
     text-decoration: none;
-    font-size: 16px;
+    font-size: var(--font-size-repo-name);
     font-weight: 600;
 }
 
@@ -132,8 +136,26 @@
 
 /* Styling for the "Some Top Repositories" heading */
 .top-repositories {
-    margin-top: 20px; /* Space between heading and container */
+    margin-top: 2rem;
     text-align: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .repo-container {
+        display: block; /* Change to block layout for mobile */
+        padding: 0;
+    }
+
+    .repo-card {
+        margin-bottom: 1.5rem; /* Space between cards in list view */
+        max-width: none; /* Remove max-width */
+        width: 100%; /* Full width */
+    }
+
+    .repo-name {
+        font-size: 1rem; /* Adjust font size if needed */
+    }
 }

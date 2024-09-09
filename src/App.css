@@ -1,12 +1,5 @@
 body {
-    display: list-item;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: monospace;
-    margin: 0;
-    background-color: #f0f0f0;
-    padding: 0 20px 50px 20px;
+  font-family: monospace;  
 }
 
 /* spinner-container.css */

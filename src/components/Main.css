@@ -111,6 +111,8 @@
 
 /* Responsive Media Queries */
 
+/* Responsive Media Queries */
+
 /* Adjustments for tablet and smaller screens */
 @media (max-width: 768px) {
     #search {
@@ -140,7 +142,7 @@
 /* Adjustments for mobile phones */
 @media (max-width: 480px) {
     #search {
-        width: 100%;
+        width: 100%; /* Full width */
         font-size: 14px;
     }
 
@@ -157,12 +159,20 @@
     }
 
     .suggestion-button {
-        font-size: 12px;
-        padding: 6px 10px;
+        font-size: 14px; /* Adjusted for better readability */
+        padding: 10px; /* Consistent padding with search bar */
+        width: 100%; /* Same width as search bar */
+        margin-bottom: 10px; /* Space between buttons */
     }
 
     .search-results {
         max-width: 95%;
         padding: 10px;
+    }
+
+    /* Update the layout for suggestion buttons on mobile devices */
+    .search-suggestions {
+        display: block; /* Switch to block layout for mobile */
+        margin-bottom: 10px;
     }
 }
