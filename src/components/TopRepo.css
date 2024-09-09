@@ -1,0 +1,139 @@
+:root {
+    --github-blue: #0366d6;
+    --footer-red: #bb2c2c;
+    --hover-blue: #1565c0;
+}
+
+/* General styling for the repo section */
+.repo-section {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    padding: 20px 0; /* Optional: Adding padding for spacing */
+}
+
+/* Heading styling */
+.repo-section h1 {
+    font-size: 28px; /* Adjusted for mobile */
+    cursor: pointer;
+    margin-bottom: 20px; /* Space between heading and container */
+}
+
+/* Grid layout for the repositories */
+.repo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid with min-width */
+    gap: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 1200px; /* Limit the max-width for better centering */
+    width: 100%;
+    justify-content: center; /* Center the grid items horizontally */
+    align-items: center; /* Center grid items vertically if needed */
+}
+
+/* Individual repository card styling */
+.repo-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically within the card */
+    max-width: 200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* GitHub logo styling */
+.github-logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+/* Repository name styling */
+.repo-name {
+    font-size: 16px;
+    color: var(--github-blue);
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    width: 100%;
+    line-height: 1.4;
+}
+
+/* Link styling inside repo name */
+.repo-name a {
+    color: var(--github-blue);
+    text-decoration: none;
+}
+
+.repo-name a:hover {
+    text-decoration: underline;
+}
+
+/* Footer styling */
+.footer {
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+/* Footer heart styling */
+.footer-heart {
+    text-align: center;
+}
+
+.footer-heart a {
+    border-bottom: 1px solid var(--footer-red);
+    color: var(--footer-red);
+    padding-bottom: .25em;
+    text-decoration: none;
+}
+
+.footer-heart a:hover {
+    color: var(--hover-blue);
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23453886' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+    background-position: bottom;
+    background-repeat: repeat-x;
+    background-size: 20%;
+    border-bottom: 0;
+    padding-bottom: .3em;
+}
+
+/* Styling for emoji inside the footer */
+.emoji {
+    vertical-align: middle;
+    padding: 5px;
+}
+
+/* Styling for the link to full repository list */
+.more-repos {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Space between container and "View All" link */
+}
+
+.more-repos-link {
+    color: var(--github-blue);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.more-repos-link:hover {
+    text-decoration: underline;
+}
+
+/* Styling for the "Some Top Repositories" heading */
+.top-repositories {
+    margin-top: 20px; /* Space between heading and container */
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}

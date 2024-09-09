@@ -1,0 +1,95 @@
+/* Header section styling */
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+.header a {
+    text-decoration: none;
+    color: black;
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.header a:hover {
+    color: #555;
+    cursor: pointer;
+}
+
+.header h1 {
+    font-size: 32px;
+    margin: 10px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.header p {
+    font-size: 18px;
+    margin: 5px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .navbar a {
+        font-size: 35px;
+        margin: 0 10px; /* Adjust margin for smaller screens */
+    }
+
+    .header {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+    
+    .header p {
+        font-size: 16px;
+    }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 601px) and (max-width: 900px) {
+    .navbar a {
+        font-size: 38px; /* Adjust font size for tablets */
+    }
+
+    .header {
+        padding: 18px; /* Adjust padding for tablets */
+    }
+
+    .header h1 {
+        font-size: 31px;
+    }
+    
+    .header p {
+        font-size: 17px;
+    }
+}
+
+/* Large screens responsiveness */
+@media (min-width: 901px) {
+    .navbar a {
+        font-size: 42px; /* Default font size for larger screens */
+    }
+
+    .header {
+        padding: 20px; /* Default padding for larger screens */
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+    
+    .header p {
+        font-size: 18px;
+    }
+}

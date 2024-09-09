@@ -1,0 +1,4 @@
+argparse
+gitpython
+pyyaml
+colorama

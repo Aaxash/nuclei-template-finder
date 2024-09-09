@@ -1,0 +1,40 @@
+name: Update Public Files Weekly
+
+on:
+  schedule:
+    - cron: '0 10 * * 1'  
+  # Optional: you can also include other triggers like `push` if needed
+
+jobs:
+  update-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Specify the Python version you need
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r .github/scripts/requirements.txt
+          
+      - name: Run Python script to generate files
+        run: |
+          python .github/scripts/main.py .github/scripts/repos.txt  # Replace with the path to your Python script
+          mv hash.txt public/files
+          mv data.json.gz public\files
+
+      - name: Commit and push updated files
+        env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use the GitHub token from secrets
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git diff --quiet || git commit -m "DB Updated [$(date)]"  # Only commit if there are changes
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin HEAD:main  # Push the commit to the main branch
