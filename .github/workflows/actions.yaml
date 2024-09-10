@@ -2,7 +2,7 @@ name: Update Public Files Weekly
 
 on:
   schedule:
-    - cron: '0 5 * * 2'  
+    - cron: '0 6 * * 2'   
 
 jobs:
   update-files:
@@ -23,15 +23,9 @@ jobs:
           
       - name: Run Python script to generate files
         run: |
-          python .github/scripts/main.py .github/scripts/temprepos.txt
-          cat hash.txt
+          python .github/scripts/main.py .github/scripts/repos.txt
           mv hash.txt public/files
           mv data.json.gz public/files
-
-      - name: Debug file changes
-        run: |
-          ls -al public/files
-          cat public/files/hash.txt
 
       - name: Commit and push updated files
         env:
