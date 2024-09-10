@@ -1,0 +1,1 @@
+projectdiscovery/nuclei-templates
