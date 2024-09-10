@@ -2,7 +2,7 @@ name: Update Public Files Weekly
 
 on:
   schedule:
-    - cron: '0 2 * * 2'  
+    - cron: '0 5 * * 2'  
 
 jobs:
   update-files:
@@ -24,13 +24,14 @@ jobs:
       - name: Run Python script to generate files
         run: |
           python .github/scripts/main.py .github/scripts/temprepos.txt
+          cat hash.txt
           mv hash.txt public/files
           mv data.json.gz public/files
-          ls -la 
 
       - name: Debug file changes
         run: |
           ls -al public/files
+          cat public/files/hash.txt
 
       - name: Commit and push updated files
         env:
@@ -39,6 +40,6 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
           git add .
-          git diff --quiet || git commit -m "DB Updated [$(date)]"
+          git commit -m "DB Updated [$(date)]"
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
           git push origin HEAD:main
