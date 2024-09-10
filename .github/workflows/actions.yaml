@@ -2,7 +2,7 @@ name: Update Public Files Weekly
 
 on:
   schedule:
-    - cron: '0 19 * * 1'  
+    - cron: '0 2 * * 2'  
 
 jobs:
   update-files:
