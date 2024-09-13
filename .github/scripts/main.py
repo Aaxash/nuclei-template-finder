@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 
-import git
-import os
-import argparse
-import yaml
-import json
-import shutil
-import hashlib
-import gzip
-import logging
-import time
+import git,os,argparse,yaml,json,shutil,hashlib,gzip,logging,time
 from colorama import init, Fore, Style
 from git.exc import GitError
 
@@ -73,7 +64,7 @@ def clone_repo(repo_url, clone_dir):
         logging.error(f"An unexpected error occurred while cloning {repo_url}: {e}")
         return False
 
-# Function to compute SHA-256 hash of a file
+# Function to compute SHA-256 hash of a file for filtering duplicates
 def compute_file_hash(file_path):
     hasher = hashlib.sha256()
     try:
@@ -85,7 +76,7 @@ def compute_file_hash(file_path):
         logging.error(f"Error computing hash for file {file_path}: {e}")
         return None
 
-# Function to map original keys to their initials
+# Function to map original keys to their initials 
 def map_keys_to_initials(data):
     key_mapping = {
         'name': 'n',
@@ -109,14 +100,14 @@ def severity_to_initial(severity):
     }
     return severity_mapping.get(severity.lower(), 'U')
 
-# Function to find and parse all YAML files in a directory
+# Function to find and parse all templates in a repo
 def parse_yaml_files(repo_dir, repo_name):
     yaml_data = []
-    logging.info(f"Scanning directory {repo_dir} for YAML files...")
+    logging.info(f"Scanning directory {repo_dir} for Templates files...")
 
     for root, dirs, files in os.walk(repo_dir):
         for file in files:
-            if file.endswith(".yaml") or file.endswith(".yml"):
+            if file.endswith(".yaml"):
                 yaml_path = os.path.join(root, file)
                 file_hash = compute_file_hash(yaml_path)
                 if not file_hash:
@@ -124,19 +115,17 @@ def parse_yaml_files(repo_dir, repo_name):
                 try:
                     with open(yaml_path, 'r',encoding='utf-8') as f:
                         yaml_content = yaml.safe_load(f)
-                        # Extract only the required fields
                         if 'info' in yaml_content:
                             data = {
                                 'name': yaml_content['info'].get('name', ''),
                                 'severity': severity_to_initial(yaml_content['info'].get('severity', '')),
                                 'tags': yaml_content['info'].get('tags', ''),
-                                'repo_name': repo_name,  # Store the current repo name
-                                'file_hash': file_hash,  # Store the hash of the YAML file
-                                'file_path': os.path.relpath(yaml_path, repo_dir)  # Relative path of the file within the repo
+                                'repo_name': repo_name,  
+                                'file_hash': file_hash,  
+                                'file_path': os.path.relpath(yaml_path, repo_dir)
                             }
                             yaml_data.append(map_keys_to_initials(data))
                 except yaml.YAMLError as e:
-                    # Log the error and skip the problematic file
                     logging.error(f"YAML parsing error in file {yaml_path}: {e}")
                 except Exception as e:
                     # Log any other unexpected errors and skip the file
@@ -144,7 +133,6 @@ def parse_yaml_files(repo_dir, repo_name):
 
     return yaml_data
 
-# Function to write unique data to JSON and print the absolute path
 def write_unique_json(data, output_file):
     seen_hashes = set()
     seen_names = set()
@@ -209,7 +197,6 @@ def compress_and_hash(json_file, compressed_file, hash_file):
 
 
 
-
 # Function to delete the cloned repository directory
 def delete_repo_dir(repo_dir):
     logging.info(f"Attempting to delete repository directory {repo_dir}...")
@@ -231,10 +218,9 @@ def process_repo(repo, output_dir, all_yaml_data, remaining_repos):
 
     # Clone the repo
     if clone_repo(repo_url, clone_dir):
-        # Parse all YAML files and store the data as JSON
+        # Parse all templates and store the data as JSON
         yaml_data = parse_yaml_files(clone_dir, repo)
         all_yaml_data.extend(yaml_data)
-
         # Delete the cloned repository after parsing
         delete_repo_dir(clone_dir)
 
@@ -246,10 +232,9 @@ def process_repo(repo, output_dir, all_yaml_data, remaining_repos):
 def main():
     start_time = time.time()  # Record start time
 
-    parser = argparse.ArgumentParser(description="Clone a list of GitHub repositories, parse all YAML files, and store specific fields as JSON.")
-
+    parser = argparse.ArgumentParser(description="Clone GitHub repositories and parse valid templates")
     # Positional argument: path to wordlist file
-    parser.add_argument('wordlist', type=str, help="Path to the wordlist file (owner/repo_name format)")
+    parser.add_argument('wordlist', type=str, help="Repo wordlist (owner/repo_name format)")
 
     args = parser.parse_args()
 
