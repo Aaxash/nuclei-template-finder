@@ -1,4 +1,4 @@
-name: Update Public Files Weekly
+name: Update Database Weekly
 
 on:
   schedule:
