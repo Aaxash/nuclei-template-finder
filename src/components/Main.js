@@ -17,10 +17,11 @@ function Main() {
     const searchResultsRef = useRef(null);
 
     const ITEMS_PER_PAGE = 40;
+    const current_year = new Date().getFullYear();
 
     const suggestions = [
         "RCE",
-        "CVE-2024",
+        `CVE-${current_year}`,
         "XSS",
         "SSRF",
         "LFI","WORDPRESS"
@@ -176,6 +177,9 @@ function Main() {
                                             - {item.n}
                                             <span className={`severity ${getSeverityClass(item.s)}`}>
                                                 {formatSeverity(item.s)}
+                                            </span>
+                                            <span>
+                                               from {item.r}
                                             </span>
                                         </h3>
                                     </div>
